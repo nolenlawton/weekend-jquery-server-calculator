@@ -19,7 +19,6 @@ app.post('/guesses', (request, response) => {
     
     let total = calculation(dataObject);
 
-    console.log(calculations)
     console.log(Number(dataObject.number1) + ' ' + dataObject.operator + ' ' + Number(dataObject.number2) + ' = ' + total)
 
     response.sendStatus(201);
@@ -27,7 +26,6 @@ app.post('/guesses', (request, response) => {
 
 app.get('/guesses', (request, response) => {
 
-    // console.log(calculations)
     response.send(calculations);
 })
 
