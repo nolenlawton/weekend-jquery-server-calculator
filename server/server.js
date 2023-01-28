@@ -1,13 +1,13 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
-app.use(express.static('server/public'))
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(express.static('server/public'));
+app.use(bodyParser.urlencoded({extended:true}));
 
 const PORT = 5000
 app.listen(PORT, () => {
-    console.log('INTERNET! PORT: 5000')
+    console.log('INTERNET! PORT: 5000');
 });
 
 const calculations = []
@@ -16,10 +16,11 @@ app.post('/guesses', (request, response) => {
 
     let dataObject = request.body;
     calculations.push(dataObject); 
-    console.log(dataObject)
+    
+    let total = calculation(dataObject);
 
-    let total = calculation(dataObject)
-    // console.log(total)
+    console.log(calculations)
+    console.log(Number(dataObject.number1) + ' ' + dataObject.operator + ' ' + Number(dataObject.number2) + ' = ' + total)
 
     response.sendStatus(201);
 })
@@ -31,18 +32,26 @@ app.get('/guesses', (request, response) => {
 })
 
 function calculation(object) {
-    console.log(object.number1 + ' '+ object.operator + ' ' + object.number2)
+    
+    let number1 = Number(object.number1);
+    let operator = object.operator;
+    let number2 = Number(object.number2);
+    let total;
 
-    if(object.operator === '+'){
-        console.log('add')
+    if(operator === '+'){
+        total = number1 + number2;
     }
-    else if(object.operator === '-'){
-        console.log('subtract')
+    else if(operator === '-'){
+        total = number1 - number2;
     }
-    else if(object.operator === 'x'){
-        console.log('multiply')
+    else if(operator === 'x'){
+        total = number1 * number2;
     }
-    else if(object.operator === '/'){
-        console.log('divide')
+    else if(operator === '/'){
+        total = number1 / number2;
     }
+
+    object.total = total
+
+    return total
 }
