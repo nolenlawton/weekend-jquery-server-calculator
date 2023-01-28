@@ -17,12 +17,9 @@ app.post('/guesses', (request, response) => {
     let dataObject = request.body;
     calculations.push(dataObject); 
     response.sendStatus(201);
-
 })
 
 app.get('/guesses', (request, response) => {
 
-     
     response.send(calculations);
-
 })
