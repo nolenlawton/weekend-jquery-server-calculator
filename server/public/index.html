@@ -12,26 +12,33 @@
 <body>
     <h1>Server Calculator</h1>
 
-    <form id="form">
         <input id="numberInput1"  type="number" placeholder="first value"/>
-
-        <input id="addInput" class="operation" type="button" value="+"/>
-        <input id="subtractInput" class="operation" type="button" value="-"/>
-        <input id="multiplyInput" class="operation" type="button" value="x"/>
-        <input id="addInput" class="operation" type="button" value="/"/>
-
-        <input id="numberInput1"  type="number" placeholder="second value"/>
-
+        <input id="addInput" class="operator" type="button" value="+"/>
+        <input id="subtractInput" class="operator" type="button" value="-"/>
+        <input id="multiplyInput" class="operator" type="button" value="x"/>
+        <input id="divideInput" class="operator" type="button" value="/"/>
+        <input id="numberInput2"  type="number" placeholder="second value"/>
         <button id="enterButton">=</button>
         <button id="clearButton">c</button>
-    </form>
 
-    <h2 id="answer">Answer Placeholder</h2>
+    <div id="keyPad">
+        <!-- <input id="b1" class="number" type="button" value="1"/>
+        <input id="b2" class="number" type="button" value="2"/>
+        <input id="b3" class="number" type="button" value="3"/>
+        <input id="b4" class="number" type="button" value="4"/>
+        <input id="b5" class="number" type="button" value="5"/>
+        <input id="b6" class="number" type="button" value="6"/>
+        <input id="b7" class="number" type="button" value="7"/>
+        <input id="b8" class="number" type="button" value="8"/>
+        <input id="b9" class="number" type="button" value="9"/>
+        <input id="b0" class="number" type="button" value="0"/> -->
+    </div>
+
+
+    <h2 id="answer"></h2>
 
     <div id="historyList">
-        <ul>mock list</ul>
-        <ul>6 + 2 = 8</ul>
-        <ul>value1 (operation) value2 = answer</ul>
+
     </div>
     
 </body>

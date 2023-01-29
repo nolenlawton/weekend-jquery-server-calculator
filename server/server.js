@@ -12,7 +12,7 @@ app.listen(PORT, () => {
 
 const calculations = []
 
-app.post('/guesses', (request, response) => {
+app.post('/calculation', (request, response) => {
 
     let dataObject = request.body;
     calculations.push(dataObject); 
@@ -24,7 +24,7 @@ app.post('/guesses', (request, response) => {
     response.sendStatus(201);
 })
 
-app.get('/guesses', (request, response) => {
+app.get('/calculation', (request, response) => {
 
     response.send(calculations);
 })
