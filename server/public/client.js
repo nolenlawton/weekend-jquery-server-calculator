@@ -1,18 +1,16 @@
-console.log('JavaScript')
-
 $(document).ready(onReady)
 
-function onReady() {
-    console.log('JQuery');
+let functions = []
 
+function onReady() {
     $('#enterButton').on('click', performFunction);
     $('#clearButton').on('click', clearInputs);
-
     $('.operator').on('click', setOpertator);
     $('#keyPad input').on('click', addToInputField);
+    $('#delete').on('click', deleteHistory)
+    $(document).on('click', 'ul', rerunFunction)
 }
 
-let functions = []
 let operator;
 
 function addToInputField() {
@@ -21,10 +19,15 @@ function addToInputField() {
     $('#functionInput').val(totalInput)
 }
 
+function setOpertator() {
+    operator = $(this).val();
+    $('.operator').prop('disabled', true);
+}
+
 function performFunction(event) {
     event.preventDefault();
-
     let functionValue = $('#functionInput').val();
+
     let number1 = '';
     let operator;
     let number2 = '';
@@ -49,31 +52,33 @@ function performFunction(event) {
         number2: number2,
     }
 
-    console.log(functionObject)
-
-    $.ajax({
-        url: '/calculation',
-        method: 'POST',
-        data: functionObject
-      }).then((response) => {
+    if(number1 !== '' && operator !== '' && number2 !== '') {
+        $.ajax({
+            url: '/calculation',
+            method: 'POST',
+            data: functionObject
+        }).then((response) => {
     
-        getCalculation();
-      })
-}
+            getCalculation();
+        })
+    }
+    else {
+        $('#answer').empty();
 
-function setOpertator() {
-    operator = $(this).val();
-    $('.operator').prop('disabled', true);
+        $('#answer').append(`
+            Error : Invalid Input
+        `)
+    }
 }
 
 function getCalculation() {
     $.ajax({
         url: '/calculation',
         method: 'GET',
-      }).then((response) => {
+    }).then((response) => {
         calculations = response;
         render();
-      })
+    })
 }
 
 function clearInputs() {
@@ -84,21 +89,45 @@ function clearInputs() {
 function render() {
     $('#historyList').empty();
     $('#answer').empty();
+    $('#delete').empty();
 
+    $('#functionInput').val('')
     $('.operator').prop('disabled', false);
 
     let mostRecent = calculations[calculations.length - 1]
-
     $('#answer').append(`
-        Answer : ${mostRecent.total}
+        Answer = ${mostRecent.total}
     `)
     
     for(let calculation of calculations) {
         
         $('#historyList').append(`
-            <ul>${calculation.number1} ${calculation.operator} ${calculation.number2} = ${calculation.total}</ul>
+            <ul class='list'>${calculation.number1} ${calculation.operator} ${calculation.number2} = ${calculation.total}</ul>
         `)
     }
+
+    $('#delete').append(`<button>DELETE HISTORY</button>`)
+}
+
+function rerunFunction () {
+    previousInput = $(this).text().split(' '); // to array
+    answerOf = previousInput[previousInput.length - 1]
+
+    $('#historyList ul').css('color', 'black')
+    $(this).css('color', 'lightcoral')
+    $('#answer').empty()
+    $('#answer').append(`Answer = ${answerOf}`)
+}
+
+function deleteHistory() {
+    console.log('delete!')
+
+    $.ajax({
+        url: '/calculation',
+        method: 'DELETE',
+    }).then((response) => {
+        getCalculation();
+    })
 }
 
 

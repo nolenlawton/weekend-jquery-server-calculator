@@ -10,7 +10,7 @@ app.listen(PORT, () => {
     console.log('INTERNET! PORT: 5000');
 });
 
-const calculations = []
+let calculations = []
 
 app.post('/calculation', (request, response) => {
 
@@ -25,6 +25,17 @@ app.post('/calculation', (request, response) => {
 })
 
 app.get('/calculation', (request, response) => {
+
+    response.send(calculations);
+})
+
+app.delete('/calculation', (request, response) => {
+
+    console.log(calculations)
+
+    calculations = []
+
+    console.log(calculations)
 
     response.send(calculations);
 })
@@ -53,3 +64,4 @@ function calculation(object) {
 
     return total
 }
+
