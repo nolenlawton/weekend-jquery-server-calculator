@@ -3,12 +3,17 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     padding-top: 10px;
+    padding-bottom: 20px;
     width: 325px;
+    margin: auto;
 }
 
 #functionInput {
-    width: 205px;
+    background-color: white;
+    color: #7D8CC4;
+    width: 198px;
     margin-right: 7px;
+    margin-top: 20px;
     cursor: text;
 }
 
@@ -20,6 +25,87 @@
     cursor: pointer;
 }
 
+body {
+    margin: 0px;
+    text-align: center;
+    background-color:#726DA8;
+}
+
 input, button {
     cursor: pointer;
+}
+
+h1 {
+    background-color: #7D8CC4;
+    color: #594157;
+    width: 350px;  
+    margin: auto;
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 12px;
+}
+
+.number, .operator, button {
+    color: #7D8CC4;
+    padding: 6px 6px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    align-items: center;
+}
+
+#functionInput {
+    background-color: white;
+    color: #7D8CC4;
+    padding: 6px 6px;
+    font-size: 16px;
+    border-radius: 12px;
+    align-items: center;
+}
+
+#answer {
+    background-color: white;
+    color: #7D8CC4;
+    margin: auto;
+    cursor:default;
+    align-items: center;
+    text-align: center;
+    border: 20px;
+    border-radius: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 325px;
+    font-size: 32px;
+    border: solid;
+}
+
+#historyList {
+    background-color: white;
+    width: 325px;
+    margin: auto;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+
+.insideList {
+    margin: 20px;
+}
+
+#delete {
+    margin: 20px;
+}
+
+#calculatorBody {
+    border: solid;
+    background-color: #A0D2DB;
+    border-color:#7D8CC4;
+    border-radius: 12px;
+    border-width: 10px;
+    border-top: 0px;
+    width: 370px;
+    margin: auto;
+    padding-top: 20px;
+
 }

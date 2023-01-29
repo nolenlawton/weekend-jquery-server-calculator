@@ -7,8 +7,8 @@ function onReady() {
     $('#clearButton').on('click', clearInputs);
     $('.operator').on('click', setOpertator);
     $('#keyPad input').on('click', addToInputField);
-    $('#delete').on('click', deleteHistory)
-    $(document).on('click', 'ul', rerunFunction)
+    $('#delete').on('click', deleteHistory);
+    $(document).on('click', '#historyList button', rerunFunction);
 }
 
 let operator;
@@ -88,21 +88,22 @@ function clearInputs() {
 
 function render() {
     $('#historyList').empty();
-    $('#answer').empty();
+        $('#answer').empty();
     $('#delete').empty();
 
+
     $('#functionInput').val('')
+
     $('.operator').prop('disabled', false);
 
     let mostRecent = calculations[calculations.length - 1]
-    $('#answer').append(`
-        Answer = ${mostRecent.total}
-    `)
+
+    $('#answer').append(`${mostRecent.total}`)
+    
     
     for(let calculation of calculations) {
-        
         $('#historyList').append(`
-            <ul class='list'>${calculation.number1} ${calculation.operator} ${calculation.number2} = ${calculation.total}</ul>
+            <button class='number insideList'>${calculation.number1} ${calculation.operator} ${calculation.number2} = ${calculation.total}</button>
         `)
     }
 
@@ -113,10 +114,10 @@ function rerunFunction () {
     previousInput = $(this).text().split(' '); // to array
     answerOf = previousInput[previousInput.length - 1]
 
-    $('#historyList ul').css('color', 'black')
+    $('#historyList button').css('color', 'black')
     $(this).css('color', 'lightcoral')
     $('#answer').empty()
-    $('#answer').append(`Answer = ${answerOf}`)
+    $('#answer').append(`${answerOf}`)
 }
 
 function deleteHistory() {
