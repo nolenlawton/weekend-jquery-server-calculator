@@ -12,6 +12,7 @@ app.listen(PORT, () => {
 
 let calculations = []
 
+// receives object from client
 app.post('/calculation', (request, response) => {
 
     let dataObject = request.body;
@@ -24,11 +25,13 @@ app.post('/calculation', (request, response) => {
     response.sendStatus(201);
 })
 
+// gives array of objects back to client
 app.get('/calculation', (request, response) => {
 
     response.send(calculations);
 })
 
+// deletes/clears server array
 app.delete('/calculation', (request, response) => {
 
     console.log(calculations)
@@ -40,6 +43,7 @@ app.delete('/calculation', (request, response) => {
     response.send(calculations);
 })
 
+// calculates given object
 function calculation(object) {
     
     let number1 = Number(object.number1);

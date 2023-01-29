@@ -3,12 +3,15 @@ $(document).ready(onReady)
 let functions = []
 
 function onReady() {
-    $('#enterButton').on('click', performFunction);
-    $('#clearButton').on('click', clearInputs);
+    $('#keyPad input').on('click', addToInputField); // set up
     $('.operator').on('click', setOpertator);
-    $('#keyPad input').on('click', addToInputField);
-    $('#delete').on('click', deleteHistory);
+    $('#clearButton').on('click', clearInputs);
+
+    $('#enterButton').on('click', performFunction); // calculation
     $(document).on('click', '#historyList button', rerunFunction);
+    
+    
+    $('#delete').on('click', deleteHistory); // delete server data
 }
 
 let operator;
@@ -24,6 +27,12 @@ function setOpertator() {
     $('.operator').prop('disabled', true);
 }
 
+function clearInputs() {
+    $('#functionInput').val('')
+    $('.operator').prop('disabled', false);
+}
+
+// sends to server via POST
 function performFunction(event) {
     event.preventDefault();
     let functionValue = $('#functionInput').val();
@@ -71,6 +80,7 @@ function performFunction(event) {
     }
 }
 
+// gets response from server via GET
 function getCalculation() {
     $.ajax({
         url: '/calculation',
@@ -81,11 +91,7 @@ function getCalculation() {
     })
 }
 
-function clearInputs() {
-    $('#functionInput').val('')
-    $('.operator').prop('disabled', false);
-}
-
+// posts to dom
 function render() {
     $('#historyList').empty();
         $('#answer').empty();
@@ -120,6 +126,7 @@ function rerunFunction () {
     $('#answer').append(`${answerOf}`)
 }
 
+// deletes server data
 function deleteHistory() {
     console.log('delete!')
 
