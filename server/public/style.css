@@ -1,7 +1,16 @@
-/* #keyPad {
+#keyPad {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     padding-top: 10px;
     width: 325px
-} */
+}
+
+#functionInput {
+    width: 205px;
+    margin-right: 7px
+}
+
+#clearButton {
+    width: 100px
+}
