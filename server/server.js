@@ -5,6 +5,8 @@ const app = express();
 app.use(express.static('server/public'));
 app.use(bodyParser.urlencoded({extended:true}));
 
+console.log('My name is', process.env.MY_NAME)
+
 const PORT = 5000
 app.listen(PORT, () => {
     console.log('INTERNET! PORT: 5000');
