@@ -12,6 +12,7 @@ function onReady() {
     
     
     $('#delete').on('click', deleteHistory); // delete server data
+    getCalculation()
 }
 
 let operator;
